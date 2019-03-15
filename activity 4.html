@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    <h1>Form</h1>
+    <label>First Name:</label>
+    <input type="text" id="First-Name">
+    <br><br>
+    <label>Last Name:</label>
+    <input type="text" id="Last-Name">
+    <br><br>
+    <label>Middle Name:</label>
+    <input type="text" id="Middle-Name">
+    <br><br>
+    <label>Strand</label>
+    <select id="strand">
+      <option>none</option>   
+      <option>ICT</option>
+      <option>ABM</option>
+      <option>Hums</option>
+    </select>
+    <br><br>
+    <label>Age:</label>
+    <input type="text" id="age">
+    <br><br>
+    <label>Gender:<label>
+      <input type="radio" name="gender" value="Male">
+      <label>Male</label>
+      <input type="radio" name="gender" value="Female">
+      <label>Female</label>
+      <br><br>
+      <label>Status:</label>
+      <input type="radio" name="status" value="Single">
+      <label>Single</label>
+      <input type="radio" name="status" value="Married">
+      <label>Married</label>
+      <input type="radio" name="status" value="It's Complicated">
+      <label>It's Complicated</label>
+      <br><br>
+      <h1>Interested In</h1>
+      <input type="checkbox" name="interes" value="programming">
+      <label>Comp, programming</label><br>
+      <input type="checkbox" name="interes" value="Blogging">
+      <label>Blogging</label><br>
+      <input type="checkbox" name="interes" value="Photography">
+      <label>Photography</label><br>
+      <input type="checkbox" name="interes" value="Marketing">
+      <label>Designing</label><br>
+      <br>
+      <button onclick="register.output()">Submit</button>
+      <br>
+      <h1>Output:</h1>
+      <div id="display"style="display:none;">
+      <h1 id="result"></h1>
+      </div>
+<script>
+var register = {
+  First_Name:"",
+  Last_Name:"",
+  Middle_Name:"",
+  Age:"",
+  Strand:"",
+  Gender:"",
+  Status:"",
+  Schedule:"",
+  Interested:"",
+  getvalues: function() {
+    var options = 0;
+    this.First_Name = document.getElementById("First-Name").value;
+    this.Last_Name = document.getElementById("Last-Name").value;
+    this.Middle_Name = document.getElementById("Middle-Name").value;
+    var Strandindex = document.getElementById("strand").selectedIndex;
+    var Strandoptions = document.getElementById("strand").options;
+    this.Strand = Strandoptions[Strandindex].value;
+    this.Age = document.getElementById("age").value;
+    var Gender = document.getElementsByName("gender");
+    for (var options; options < Gender.length; options++) {
+    if (Gender[options].checked) {
+     this.Gender = Gender[options].value;
+      break;
+    }  
+    }
+    var Status = document.getElementsByName("status");
+    for (var options; options < Status.length; options++) {
+    if (Status[options].checked) {
+     this.Status = Status[options].value;
+     break;
+    }  
+    }
+    var interested = document.getElementsByName("interes");
+    this.Interested = "";
+    for (var options; options < interested.length; options++) {
+    if (interested[options].checked === true) {
+    this.Interested += interested[options].value + " ";
+    } 
+    }
+  },
+  output: function() {
+    this.getvalues();
+    var visible = document.getElementById("display").style.display = "block";
+    var output = document.getElementById("result");
+    output.innerHTML = 
+    "<label>FirstName:</label> " + this.First_Name + "<br>" +
+    "<label>LastName: </label> " + this.Last_Name + "<br>" + 
+    "<label>MiddleName:</label>" + this.Middle_Name + "<br>" +
+    "<label>Strand :</label> " + this.Strand + "<br>" +
+    "<label>Age:</label> " + this.Age + "<br>" +
+    "<label>Gender:</label> " + this.Gender + "<br>" + 
+    "<label>Status:</label> " + this.Status + "<br>" +
+    "<label>Interested:</label> " + this.Interested + "<br>" 
+}
+};
+      </script>
+  </body>
+</html>

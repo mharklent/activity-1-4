@@ -1,0 +1,89 @@
+<html>
+<head></head>
+<body>
+<br/>
+<label>Name</label>
+<select id="selecthero">
+<option>Ichigo</option>
+<option>Aizen</option>
+<option>Narato</option>
+<option>Zaraki</option>
+<option>Jin</option>
+</select>
+<br/>
+<label>Type</label>
+<input type="text" id="type">
+<br>
+<label>Health</label>
+<input type="text" id="health">
+<br>
+<label>Weapon</label>
+<input type="text" id="weapon">
+<br>
+<input type="button" value="GO"  onclick="hero.initialize()">
+<br>
+<input type="button" value="walk" id="btn-walk" onclick="hero.walk()"  disabled/>
+<br>
+<input type="button" value="health" id="btn-health" onclick="hero.hp()" disabled/>
+<br>
+<input type="button" value="weapon" id="btn-weapon" onclick="hero.attack()"  disabled/>
+<br>
+<input type="button" value="hit" id="btn-hit" onclick="hero.hit()"  disabled/>
+<br>
+<h1>Results:</h1><h1 id="result"></h1>
+
+<script>
+
+var hero = {
+    name:"",
+    type:"",
+    health:"",
+    weapon:"",
+    
+    initialize: function() {
+    var x = document.getElementById("selecthero").selectedIndex;
+    var y = document.getElementById("selecthero").options;
+    this.name = y[x].text;
+    this.type = document.getElementById("type").value;
+    this.health =Number(document.getElementById("health").value);
+    this.weapon = document.getElementById("weapon").value;
+    if (this.type == "" || this.health == "" || this.weapon == "")
+    {
+        document.getElementById("result").innerHTML = "Please input the value";
+        return false
+   }
+   else 
+   {
+       document.getElementById("btn-walk").disabled = false;
+       document.getElementById("btn-health").disabled = false;
+       document.getElementById("btn-weapon").disabled = false;
+       document.getElementById("btn-hit").disabled = false;
+       return true
+   }
+},    
+
+    walk: function() {
+    this.initialize();
+    document.getElementById("result").innerHTML= this.name + " is now walking";
+    },
+    
+    hp: function() {
+    this.initialize();
+    document.getElementById("result").innerHTML = "healthpoint:" + this.health;
+    },
+
+    attack: function() {
+    this.initialize();
+    document.getElementById("result").innerHTML = this.name + " is now attacking using his " + this.weapon;
+    },
+
+    hit: function(minus) {
+    var life = this.health-=5;
+    document.getElementById("result").innerHTML = "health "+ this.health;
+},
+
+}
+</script>
+
+</body>
+</html>
